@@ -44,7 +44,6 @@ public class WmUserServiceImpl extends ServiceImpl<WmUserMapper, WmUser> impleme
             wmUser.setPassword("");
             map.put("user",wmUser);
             return ResponseResult.okResult(map);
-
         }else {
             return ResponseResult.errorResult(AppHttpCodeEnum.LOGIN_PASSWORD_ERROR);
         }

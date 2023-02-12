@@ -44,7 +44,6 @@ public class ArticleSearchServiceImpl implements ArticleSearchService {
 
     /**
      * es文章分页检索
-     *
      * @param dto
      * @return
      */
@@ -103,7 +102,6 @@ public class ArticleSearchServiceImpl implements ArticleSearchService {
         Arrays.stream(searchResponse.getHits().getHits()).map(SearchHit::getSourceAsMap).forEach(System.out::println);
 
         //3.结果封装返回
-
         List<Map> list = new ArrayList<>();
 
         SearchHit[] hits = searchResponse.getHits().getHits();

@@ -29,7 +29,6 @@ public class ApUserSearchServiceImpl implements ApUserSearchService {
 
     /**
      * 保存用户搜索记录
-     *
      * @param keyword 搜索关键词
      * @param UserId  用户id
      */
@@ -68,7 +67,6 @@ public class ApUserSearchServiceImpl implements ApUserSearchService {
 
     /**
      * 查询用户搜索记录
-     *
      * @return
      */
     @Override

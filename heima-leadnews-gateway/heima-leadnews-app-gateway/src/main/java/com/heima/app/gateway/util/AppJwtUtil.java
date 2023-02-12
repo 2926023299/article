@@ -16,9 +16,9 @@ public class AppJwtUtil {
     private static final int REFRESH_TIME = 300;
 
     // 生产ID
-    public static String getToken(Long id){
+    public static String getToken(Long id) {
         Map<String, Object> claimMaps = new HashMap<>();
-        claimMaps.put("id",id);
+        claimMaps.put("id", id);
         long currentTime = System.currentTimeMillis();
         return Jwts.builder()
                 .setId(UUID.randomUUID().toString())
@@ -40,9 +40,9 @@ public class AppJwtUtil {
      * @return
      */
     private static Jws<Claims> getJws(String token) {
-            return Jwts.parser()
-                    .setSigningKey(generalKey())
-                    .parseClaimsJws(token);
+        return Jwts.parser()
+                .setSigningKey(generalKey())
+                .parseClaimsJws(token);
     }
 
     /**
@@ -54,14 +54,13 @@ public class AppJwtUtil {
     public static Claims getClaimsBody(String token) {
         try {
             return getJws(token).getBody();
-        }catch (ExpiredJwtException e){
+        } catch (ExpiredJwtException e) {
             return null;
         }
     }
 
     /**
-     * 获取hearder body信息
-     *
+     * 获取header body信息
      * @param token
      * @return
      */
@@ -76,21 +75,21 @@ public class AppJwtUtil {
      * @return -1：有效，0：有效，1：过期，2：过期
      */
     public static int verifyToken(Claims claims) {
-        if(claims==null){
+        if (claims == null) {
             return 1;
         }
         try {
             claims.getExpiration()
                     .before(new Date());
             // 需要自动刷新TOKEN
-            if((claims.getExpiration().getTime()-System.currentTimeMillis())>REFRESH_TIME*1000){
+            if ((claims.getExpiration().getTime() - System.currentTimeMillis()) > REFRESH_TIME * 1000) {
                 return -1;
-            }else {
+            } else {
                 return 0;
             }
         } catch (ExpiredJwtException ex) {
             return 1;
-        }catch (Exception e){
+        } catch (Exception e) {
             return 2;
         }
     }

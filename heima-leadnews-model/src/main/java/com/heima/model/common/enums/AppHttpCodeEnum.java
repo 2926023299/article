@@ -32,18 +32,18 @@ public enum AppHttpCodeEnum {
     MATERIASL_REFERENCE_FAIL(3501,"素材引用失败");
 
     int code;
-    String errorMessage;
+    String Message;
 
     AppHttpCodeEnum(int code, String errorMessage){
         this.code = code;
-        this.errorMessage = errorMessage;
+        this.Message = errorMessage;
     }
 
     public int getCode() {
         return code;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getMessage() {
+        return Message;
     }
 }

@@ -74,7 +74,6 @@ public class TaskServiceImpl implements TaskService {
             cacheService.lLeftPush(ScheduleConstants.TOPIC + task.getTaskType() + "_" + task.getPriority(), JSON.toJSONString(task));
         } else if (task.getExecuteTime() <= timeInMillis) {
             //如果任务的执行时间大于当前时间 && 小于等于预设时间（未来5分钟），存入zSet中
-
             cacheService.zAdd(ScheduleConstants.FUTURE + task.getTaskType() + "_" + task.getPriority(), JSON.toJSONString(task), task.getExecuteTime());
         } else {
             log.error("任务执行时间超过预设时间，任务id：{}", task.getTaskId());
